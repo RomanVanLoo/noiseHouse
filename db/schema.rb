@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_133155) do
+ActiveRecord::Schema.define(version: 2019_11_26_162328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "houses", force: :cascade do |t|
+    t.string "address"
+    t.integer "bedrooms"
+    t.integer "bathrooms"
+    t.integer "surface_in"
+    t.integer "surface_out"
+    t.string "url"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "photo"
+    t.index ["user_id"], name: "index_houses_on_user_id"
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.integer "level"
+    t.bigint "house_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_id"], name: "index_measurements_on_house_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +45,11 @@ ActiveRecord::Schema.define(version: 2019_11_24_133155) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "houses", "users"
+  add_foreign_key "measurements", "houses"
 end
