@@ -1,0 +1,18 @@
+<div class="houses-flexbox">
+  <div class="houses-left">
+  <% @houses.each do |house| %>
+    <div class="card-house">
+      <img src=<%= cl_image_path(house.photo) %> />
+      <div class="card-house-infos">
+        <h2><%= house.address %></h2>
+        <p>Product description with <strong>relevant info</strong> only.</p>
+      </div>
+    </div>
+  <% end %>
+
+  </div>
+
+  <div class="houses-right">
+
+  </div>
+</div>
