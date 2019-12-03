@@ -47,7 +47,7 @@ house.save!
 #House 2
 
 house = House.new(
-  address: 'Dorpsstraat 82 BUS 4, 2221 Booischot',
+  address: 'Dorpsstraat 82, 2221 Booischot',
   bedrooms: 1,
   bathrooms: 1,
   surface_in: 48,

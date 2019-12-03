@@ -3,6 +3,14 @@ class HousesController < ApplicationController
 
   def index
     @houses = House.all
+
+    @markers = @houses.map do |house|
+      {
+        lat: house.latitude,
+        lng: house.longitude,
+        id: house.id
+      }
+    end
   end
 
 end
